@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1D9E75">
+<title>Gislene English — Painel</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-dark: #0F6E56;
+    --green-light: #E1F5EE;
+    --green-mid: #9FE1CB;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --text: #1a1a1a;
+    --text-secondary: #5f5e5a;
+    --text-tertiary: #9b9a96;
+    --bg: #f5f5f3;
+    --bg-card: #ffffff;
+    --bg-secondary: #f1efe8;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.15);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f0ede8;
+      --text-secondary: #b4b2a9;
+      --text-tertiary: #6b6a66;
+      --bg: #1a1a18;
+      --bg-card: #242422;
+      --bg-secondary: #2c2c2a;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.15);
+      --green-light: #04342c;
+      --amber-light: #412402;
+      --blue-light: #042c53;
+      --purple-light: #26215c;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg-card);
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .topbar-icon {
+    width: 32px; height: 32px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .topbar-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .topbar-sub { font-size: 11px; color: var(--text-secondary); }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg-card);
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 100;
+  }
+
+  .nav-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    gap: 2px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    font-size: 10px;
+    font-weight: 500;
+    transition: color 0.15s;
+    min-height: 52px;
+  }
+
+  .nav-btn .ti { font-size: 22px; }
+  .nav-btn.active { color: var(--green); }
+  .nav-btn span { font-size: 10px; }
+
+  /* MAIN CONTENT */
+  .main {
+    padding-top: 72px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom) + 8px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header { margin-bottom: 16px; padding-top: 4px; }
+  .section-title { font-size: 20px; font-weight: 700; color: var(--text); }
+  .section-desc { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+
+  /* METRIC GRID */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .metric {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+
+  .metric-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+  .metric-value { font-size: 24px; font-weight: 700; color: var(--text); line-height: 1; }
+  .metric-sub { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+  .metric-green .metric-value { color: var(--green); }
+  .metric-amber .metric-value { color: var(--amber); }
+  .metric-blue .metric-value { color: var(--blue); }
+
+  /* INFO ROWS */
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+    gap: 12px;
+  }
+
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-size: 13px; color: var(--text-secondary); flex-shrink: 0; }
+  .info-value { font-size: 13px; font-weight: 500; color: var(--text); text-align: right; }
+
+  /* BADGES */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  .badge-green { background: var(--green-light); color: var(--green-dark); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+
+  /* PROGRESS */
+  .progress-bar {
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  /* FUNNEL STEPS */
+  .funnel-steps { display: flex; flex-direction: column; gap: 8px; }
+
+  .funnel-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+  }
+
+  .funnel-num {
+    width: 28px; height: 28px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .funnel-text { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .funnel-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* VIDEO ITEMS */
+  .video-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .video-item:last-child { border-bottom: none; }
+
+  .video-thumb {
+    width: 40px; height: 40px;
+    background: var(--green-light);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .video-info { flex: 1; min-width: 0; }
+  .video-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .video-goal { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* CHECKLIST */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 22px; height: 22px;
+    border: 2px solid var(--border-strong);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 0px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .check-box.done {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+
+  .check-text { font-size: 14px; color: var(--text); line-height: 1.4; }
+  .check-text.done-text { text-decoration: line-through; color: var(--text-tertiary); }
+
+  /* AI BOX */
+  .ai-box {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .ai-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--green-light);
+    border-bottom: 0.5px solid var(--green-mid);
+  }
+
+  .ai-header-text { font-size: 14px; font-weight: 600; color: var(--green-dark); }
+  .ai-header-sub { font-size: 11px; color: var(--green); }
+
+  .ai-controls { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+
+  .ai-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+
+  .ai-select, .ai-input {
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: var(--bg-secondary);
+    color: var(--text);
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .ai-input { resize: none; min-height: 72px; }
+
+  .btn-generate {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: background 0.15s;
+  }
+
+  .btn-generate:hover { background: var(--green-dark); }
+  .btn-generate:disabled { background: var(--green-mid); cursor: not-allowed; }
+  .btn-generate .ti { font-size: 18px; }
+
+  .ai-output {
+    padding: 14px 16px;
+    border-top: 0.5px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    white-space: pre-wrap;
+    display: none;
+  }
+
+  /* LOADING */
+  .loading-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  /* BIO BOX */
+  .bio-box {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.9;
+  }
+
+  /* TAGS */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+  /* COPY BUTTON */
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--green);
+    background: none;
+    border: 1px solid var(--green);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-tertiary);
+  }
+
+  .empty-state .ti { font-size: 40px; display: block; margin-bottom: 10px; }
+  .empty-state p { font-size: 13px; }
+
+  /* AVATAR DORES */
+  .dor-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .dor-item:last-child { border-bottom: none; }
+  .dor-icon { font-size: 18px; flex-shrink: 0; color: var(--amber); }
+  .desejo-icon { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-icon"><i class="ti ti-language"></i></div>
+  <div>
+    <div class="topbar-title">Gislene English</div>
+    <div class="topbar-sub">Painel de gestão</div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- 1. VISÃO GERAL -->
+  <div class="section active" id="sec-visao">
+    <div class="section-header">
+      <div class="section-title">Visão Geral</div>
+      <div class="section-desc">Projeto — Mês 1 em andamento</div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric metric-green">
+        <div class="metric-label">Fase atual</div>
+        <div class="metric-value">Mês 1</div>
+        <div class="metric-sub">Estruturação</div>
+      </div>
+      <div class="metric metric-amber">
+        <div class="metric-label">Conteúdos</div>
+        <div class="metric-value">0/15</div>
+        <div class="metric-sub">Meta: 30 dias</div>
+      </div>
+      <div class="metric metric-blue">
+        <div class="metric-label">Leads gerados</div>
+        <div class="metric-value">0</div>
+        <div class="metric-sub">Meta: primeiros leads</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Funil WhatsApp</div>
+        <div class="metric-value" style="font-size:13px;margin-top:6px;"><span class="badge badge-amber">Estruturando</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Posicionamento</h3>
+      <div class="info-row">
+        <span class="info-label">Transformação</span>
+        <span class="info-value">Falar inglês com confiança</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Promessa</span>
+        <span class="info-value">Inglês aplicado à vida real</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Público</span>
+        <span class="info-value">Brasileiros nos EUA</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Formato</span>
+        <span class="info-value">Aulas online e personalizadas</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Bio do Instagram</h3>
+      <div class="bio-box">
+        🇺🇸 Inglês para brasileiros nos EUA<br>
+        🎯 Fale inglês com confiança no trabalho e no dia a dia<br>
+        💻 Aulas online e personalizadas<br>
+        👇 Agende sua aula experimental
+      </div>
+      <button class="copy-btn" onclick="copyBio()">
+        <i class="ti ti-copy"></i> Copiar bio
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Progresso geral — Mês 1</h3>
+      <div style="font-size:13px;color:var(--text-secondary);">5% concluído</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:5%"></div></div>
+    </div>
+  </div>
+
+  <!-- 2. METAS -->
+  <div class="section" id="sec-metas">
+    <div class="section-header">
+      <div class="section-title">Metas e KPIs</div>
+      <div class="section-desc">Indicadores por horizonte de tempo</div>
+    </div>
+
+    <div class="card">
+      <h3>30 dias — Indicadores</h3>
+      <div class="info-row"><span class="info-label">Perfil</span><span class="info-value">Profissional completo</span></div>
+      <div class="info-row"><span class="info-label">Conteúdos</span><span class="info-value">15 publicados</span></div>
+      <div class="info-row"><span class="info-label">Fixados</span><span class="info-value">3 vídeos</span></div>
+      <div class="info-row"><span class="info-label">Funil WA</span><span class="info-value">Funcionando</span></div>
+      <div class="info-row"><span class="info-label">Leads</span><span class="info-value">Primeiros gerados</span></div>
+    </div>
+
+    <div class="card">
+      <h3>90 dias — Indicadores</h3>
+      <div class="info-row"><span class="info-label">Leads/dia</span><span class="info-value">5 a 10</span></div>
+      <div class="info-row"><span class="info-label">Taxa de resposta</span><span class="info-value">> 80%</span></div>
+      <div class="info-row"><span class="info-label">Casos de sucesso</span><span class="info-value">Documentados</span></div>
+    </div>
+
+    <div class="card">
+      <h3>6 a 12 meses</h3>
+      <div class="info-row"><span class="info-label">Objetivo</span><span class="info-value">Referência nos EUA</span></div>
+      <div class="info-row"><span class="info-label">Modelo</span><span class="info-value">Matrículas previsíveis</span></div>
+      <div class="info-row"><span class="info-label">Fase</span><span class="info-value">Escalável</span></div>
+    </div>
+  </div>
+
+  <!-- 3. AVATAR -->
+  <div class="section" id="sec-avatar">
+    <div class="section-header">
+      <div class="section-title">Avatar</div>
+      <div class="section-desc">Brasileiros nos EUA, 25 a 55 anos</div>
+    </div>
+
+    <div class="card">
+      <h3>Principais dores</h3>
+      <div class="dor-item"><i class="ti ti-mood-sad dor-icon"></i>Medo de falar inglês</div>
+      <div class="dor-item"><i class="ti ti-mood-confuzed dor-icon"></i>Vergonha de errar</div>
+      <div class="dor-item"><i class="ti ti-phone-off dor-icon"></i>Dependência de tradutores</div>
+      <div class="dor-item"><i class="ti ti-briefcase dor-icon"></i>Dificuldade em entrevistas</div>
+      <div class="dor-item"><i class="ti ti-alert-circle dor-icon"></i>Insegurança no trabalho</div>
+      <div class="dor-item"><i class="ti ti-school dor-icon"></i>Não consegue ajudar os filhos</div>
+    </div>
+
+    <div class="card">
+      <h3>Desejos</h3>
+      <div class="dor-item"><i class="ti ti-star desejo-icon" style="color:var(--green)"></i>Empregos melhores</div>
+      <div class="dor-item"><i class="ti ti-trending-up desejo-icon" style="color:var(--green)"></i>Ganhar mais dinheiro</div>
+      <div class="dor-item"><i class="ti ti-microphone desejo-icon" style="color:var(--green)"></i>Entrevistas com confiança</div>
+      <div class="dor-item"><i class="ti ti-home desejo-icon" style="color:var(--green)"></i>Independência nos EUA</div>
+      <div class="dor-item"><i class="ti ti-message-circle desejo-icon" style="color:var(--green)"></i>Conversar naturalmente</div>
+    </div>
+  </div>
+
+  <!-- 4. CONTEÚDO -->
+  <div class="section" id="sec-conteudo">
+    <div class="section-header">
+      <div class="section-title">Conteúdo</div>
+      <div class="section-desc">8 vídeos planejados para o lançamento</div>
+    </div>
+
+    <div class="card">
+      <h3>Vídeos fixados</h3>
+      <div class="funnel-steps">
+        <div class="funnel-step">
+          <div class="funnel-num" style="background:var(--blue)">F1</div>
+          <div>
+            <div class="funnel-text">Quem é a Gislene</div>
+            <div class="funnel-sub">Apresentação — gerar conexão</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num" style="background:var(--amber)">F2</div>
+          <div>
+            <div class="funnel-text">Por que você ainda trava no inglês</div>
+            <div class="funnel-sub">Identificação — quebrar objeção</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num">F3</div>
+          <div>
+            <div class="funnel-text">Convite para aula experimental</div>
+            <div class="funnel-sub">Conversão — CTA direto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Biblioteca de vídeos</h3>
+      <div id="video-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Pilares de conteúdo</h3>
+      <div class="info-row"><span class="info-label"><span class="badge badge-blue">Autoridade</span></span><span class="info-value" style="font-size:12px;">Entrevistas, pronúncia, erros</span></div>
+      <div class="info-row"><span class="info-label"><span class="badge badge-green">Conexão</span></span><span class="info-value" style="font-size:12px;">História, bastidores, rotina</span></div>
+      <div class="info-row"><span class="info-label"><span class="badge badge-amber">Prova social</span></span><span class="info-value" style="font-size:12px;">Depoimentos, prints, resultados</span></div>
+      <div class="info-row"><span class="info-label"><span class="badge badge-purple">Conversão</span></span><span class="info-value" style="font-size:12px;">Aula experimental, diagnóstico</span></div>
+    </div>
+  </div>
+
+  <!-- 5. SCRIPTS IA -->
+  <div class="section" id="sec-scripts">
+    <div class="section-header">
+      <div class="section-title">Gerador IA</div>
+      <div class="section-desc">Scripts, legendas e CTAs para a Gislene</div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-header">
+        <i class="ti ti-sparkles" style="font-size:22px;color:var(--green-dark)"></i>
+        <div>
+          <div class="ai-header-text">Gerador de scripts</div>
+          <div class="ai-header-sub">Powered by Claude AI</div>
+        </div>
+      </div>
+      <div class="ai-controls">
+        <div>
+          <div class="ai-label">Tipo de conteúdo</div>
+          <select class="ai-select" id="ai-type">
+            <option value="reels">Roteiro de Reels (autoridade)</option>
+            <option value="fixado">Roteiro — Vídeo fixado</option>
+            <option value="caption">Legenda de post</option>
+            <option value="cta">CTA para aula experimental</option>
+            <option value="stories">Script de Stories</option>
+            <option value="objecao">Quebra de objeção</option>
+          </select>
+        </div>
+        <div>
+          <div class="ai-label">Tema ou contexto (opcional)</div>
+          <textarea class="ai-input" id="ai-context" placeholder="Ex: medo de errar inglês na entrevista de emprego..."></textarea>
+        </div>
+        <button class="btn-generate" id="ai-btn" onclick="generateScript()">
+          <i class="ti ti-sparkles"></i> Gerar script
+        </button>
+      </div>
+      <div class="ai-output" id="ai-output"></div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-header">
+        <i class="ti ti-brand-whatsapp" style="font-size:22px;color:var(--green-dark)"></i>
+        <div>
+          <div class="ai-header-text">Resposta WhatsApp</div>
+          <div class="ai-header-sub">Gere mensagem personalizada para o lead</div>
+        </div>
+      </div>
+      <div class="ai-controls">
+        <div>
+          <div class="ai-label">Perfil do lead (respostas das perguntas)</div>
+          <textarea class="ai-input" id="wa-context" placeholder="Ex: João, Orlando, 3 anos nos EUA, inglês básico, quer emprego melhor..."></textarea>
+        </div>
+        <button class="btn-generate" id="wa-btn" onclick="generateWA()">
+          <i class="ti ti-sparkles"></i> Gerar mensagem
+        </button>
+      </div>
+      <div class="ai-output" id="wa-output"></div>
+    </div>
+  </div>
+
+  <!-- 6. AÇÕES -->
+  <div class="section" id="sec-acoes">
+    <div class="section-header">
+      <div class="section-title">Próximas Ações</div>
+      <div class="section-desc">Checklist das 4 semanas</div>
+    </div>
+
+    <div class="card">
+      <h3>Semana 1 — Posicionamento</h3>
+      <div id="s1-list"></div>
+    </div>
+    <div class="card">
+      <h3>Semana 2 — Conteúdo</h3>
+      <div id="s2-list"></div>
+    </div>
+    <div class="card">
+      <h3>Semana 3 — Tráfego</h3>
+      <div id="s3-list"></div>
+    </div>
+    <div class="card">
+      <h3>Semana 4 — Otimização</h3>
+      <div id="s4-list"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showSection('visao', this)">
+    <i class="ti ti-layout-dashboard"></i>
+    <span>Visão</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('metas', this)">
+    <i class="ti ti-target"></i>
+    <span>Metas</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('avatar', this)">
+    <i class="ti ti-user-circle"></i>
+    <span>Avatar</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('conteudo', this)">
+    <i class="ti ti-video"></i>
+    <span>Conteúdo</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('scripts', this)">
+    <i class="ti ti-sparkles"></i>
+    <span>IA</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('acoes', this)">
+    <i class="ti ti-checkbox"></i>
+    <span>Ações</span>
+  </button>
+</nav>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Videos
+const videos = [
+  {num:1, title:'Quem é a Gislene', goal:'Apresentação', badge:'Fixado', color:'var(--blue)'},
+  {num:2, title:'Por que brasileiros travam no inglês', goal:'Quebra de objeção', badge:'Fixado', color:'var(--amber)'},
+  {num:3, title:'Aula experimental gratuita', goal:'Captação / CTA', badge:'Fixado', color:'var(--green)'},
+  {num:4, title:'3 frases para entrevistas de emprego', goal:'Autoridade', badge:'Autoridade', color:'var(--purple)'},
+  {num:5, title:'5 erros dos brasileiros ao falar inglês', goal:'Autoridade', badge:'Autoridade', color:'var(--purple)'},
+  {num:6, title:'Como responder "Tell me about yourself"', goal:'Autoridade', badge:'Autoridade', color:'var(--purple)'},
+  {num:7, title:'É possível aprender inglês depois dos 30?', goal:'Objeção', badge:'Objeção', color:'var(--amber)'},
+  {num:8, title:'Quanto inglês você precisa para ganhar mais?', goal:'Desejo', badge:'Desejo', color:'var(--green-dark)'},
+];
+
+const vl = document.getElementById('video-list');
+videos.forEach(v => {
+  vl.innerHTML += `<div class="video-item">
+    <div class="video-thumb"><i class="ti ti-player-play"></i></div>
+    <div class="video-info">
+      <div class="video-title">${v.num}. ${v.title}</div>
+      <div class="video-goal">${v.goal}</div>
+    </div>
+    <span class="badge" style="background:${v.color}22;color:${v.color};flex-shrink:0;">${v.badge}</span>
+  </div>`;
+});
+
+// Checklists
+const weeks = {
+  's1': ['Definir posicionamento final', 'Ajustar bio do Instagram', 'Organizar identidade visual', 'Produzir 3 conteúdos fixados'],
+  's2': ['Produzir conteúdos de autoridade', 'Criar destaques do Instagram', 'Configurar WhatsApp Business', 'Montar funil de qualificação'],
+  's3': ['Publicar os primeiros conteúdos', 'Iniciar tráfego pago (Meta Ads)', 'Testar 2 criativos diferentes', 'Monitorar primeiros leads'],
+  's4': ['Avaliar métricas de alcance', 'Ajustar segmentação das campanhas', 'Coletar primeiros feedbacks', 'Criar novos criativos'],
+};
+
+Object.entries(weeks).forEach(([week, items]) => {
+  const el = document.getElementById(week + '-list');
+  items.forEach((item, i) => {
+    const key = week + '-' + i;
+    const done = localStorage.getItem(key) === '1';
+    const div = document.createElement('div');
+    div.className = 'checklist-item';
+    div.innerHTML = `
+      <div class="check-box ${done ? 'done' : ''}" data-key="${key}">
+        ${done ? '<i class="ti ti-check" style="font-size:12px;"></i>' : ''}
+      </div>
+      <div class="check-text ${done ? 'done-text' : ''}">${item}</div>
+    `;
+    div.querySelector('.check-box').addEventListener('click', function() {
+      const k = this.dataset.key;
+      const isDone = localStorage.getItem(k) === '1';
+      if (isDone) {
+        localStorage.removeItem(k);
+        this.classList.remove('done');
+        this.innerHTML = '';
+        this.nextElementSibling.classList.remove('done-text');
+      } else {
+        localStorage.setItem(k, '1');
+        this.classList.add('done');
+        this.innerHTML = '<i class="ti ti-check" style="font-size:12px;"></i>';
+        this.nextElementSibling.classList.add('done-text');
+      }
+    });
+    el.appendChild(div);
+  });
+});
+
+// Bio copy
+function copyBio() {
+  const bio = `🇺🇸 Inglês para brasileiros nos EUA\n🎯 Fale inglês com confiança no trabalho e no dia a dia\n💻 Aulas online e personalizadas\n👇 Agende sua aula experimental`;
+  navigator.clipboard.writeText(bio).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.innerHTML = '<i class="ti ti-check"></i> Copiado!';
+    setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i> Copiar bio'; }, 2000);
+  });
+}
+
+// AI calls
+async function callClaude(prompt) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  const data = await res.json();
+  return data.content?.map(c => c.text || '').join('') || 'Erro ao gerar.';
+}
+
+function showLoading(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.innerHTML = '<div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+}
+
+function showOutput(id, text) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.textContent = text;
+}
+
+async function generateScript() {
+  const type = document.getElementById('ai-type').value;
+  const context = document.getElementById('ai-context').value;
+  const btn = document.getElementById('ai-btn');
+
+  const labels = {
+    reels: 'Roteiro de Reels de autoridade (máximo 60 segundos)',
+    fixado: 'Roteiro de vídeo fixado',
+    caption: 'Legenda de post para Instagram',
+    cta: 'CTA para aula experimental gratuita',
+    stories: 'Script de Stories (3 a 5 slides)',
+    objecao: 'Conteúdo de quebra de objeção',
+  };
+
+  const contextLine = context ? `\n\nContexto adicional: ${context}` : '';
+  const prompt = `Você é especialista em marketing digital para professores brasileiros. Crie um ${labels[type]} para Gislene, professora de inglês brasileira que mora nos EUA e ensina inglês para brasileiros residentes nos Estados Unidos.
+
+Avatar: brasileiros de 25 a 55 anos que moram nos EUA, têm dificuldade com inglês e querem empregos melhores, mais independência e falar com confiança.
+
+Posicionamento da Gislene: inglês aplicado à vida real, sem foco excessivo em gramática, comunicação prática. Tom: próximo, empático, direto — como alguém que entende a dor de ser brasileiro nos EUA.${contextLine}
+
+Gere o conteúdo em português brasileiro. Seja específico, use exemplos do cotidiano do brasileiro nos EUA. Soe autêntico, não genérico.`;
+
+  btn.disabled = true;
+  showLoading('ai-output');
+  try {
+    const result = await callClaude(prompt);
+    showOutput('ai-output', result);
+  } catch(e) {
+    showOutput('ai-output', 'Erro ao conectar. Verifique sua conexão e tente novamente.');
+  }
+  btn.disabled = false;
+}
+
+async function generateWA() {
+  const context = document.getElementById('wa-context').value.trim();
+  if (!context) { showOutput('wa-output', 'Preencha o perfil do lead.'); return; }
+  const btn = document.getElementById('wa-btn');
+  btn.disabled = true;
+  showLoading('wa-output');
+
+  const prompt = `Você é Gislene, professora de inglês brasileira que mora nos EUA. Ensina inglês para brasileiros nos Estados Unidos com foco em comunicação prática e vida real.
+
+Com base no perfil deste lead, escreva a próxima mensagem de WhatsApp para convidar para a aula experimental gratuita. Seja calorosa, empática e direta. Use o nome da pessoa. Conecte a oferta com o objetivo específico do lead. Não exagere nos emojis.
+
+Perfil do lead: ${context}
+
+Escreva apenas a mensagem, sem explicações adicionais.`;
+
+  try {
+    const result = await callClaude(prompt);
+    showOutput('wa-output', result);
+  } catch(e) {
+    showOutput('wa-output', 'Erro ao conectar. Tente novamente.');
+  }
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>
