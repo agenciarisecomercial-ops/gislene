@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1D9E75">
+<title>Gislene English</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  --g:#1D9E75;--gd:#0F6E56;--gl:#E1F5EE;--gm:#9FE1CB;
+  --am:#BA7517;--al:#FAEEDA;
+  --bl:#185FA5;--bll:#E6F1FB;
+  --pu:#534AB7;--pul:#EEEDFE;
+  --rd:#A32D2D;--rl:#FCEBEB;
+  --t:#1a1a1a;--t2:#5f5e5a;--t3:#9b9a96;
+  --bg:#f5f5f3;--card:#fff;--bg2:#f1efe8;
+  --br:rgba(0,0,0,0.08);--br2:rgba(0,0,0,0.15);
+}
+@media(prefers-color-scheme:dark){:root{
+  --t:#f0ede8;--t2:#b4b2a9;--t3:#6b6a66;
+  --bg:#1a1a18;--card:#242422;--bg2:#2c2c2a;
+  --br:rgba(255,255,255,0.08);--br2:rgba(255,255,255,0.15);
+  --gl:#04342c;--al:#412402;--bll:#042c53;--pul:#26215c;--rl:#501313;
+}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t);min-height:100dvh}
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;background:var(--card);border-bottom:.5px solid var(--br);display:flex;align-items:center;padding:0 16px;gap:10px;z-index:100}
+.t-icon{width:32px;height:32px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0}
+.t-title{font-size:15px;font-weight:700;color:var(--t)}
+.t-sub{font-size:11px;color:var(--t2)}
+.sync{width:8px;height:8px;border-radius:50%;background:var(--g);margin-left:auto;flex-shrink:0}
+.sync.spin{background:var(--am);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:.5px solid var(--br);display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:100}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;gap:2px;border:none;background:none;cursor:pointer;color:var(--t3);font-size:9px;font-weight:600;min-height:52px}
+.nb .ti{font-size:20px}
+.nb.on{color:var(--g)}
+.main{padding:72px 16px calc(70px + env(safe-area-inset-bottom))}
+.sec{display:none}.sec.on{display:block}
+.sh{margin-bottom:16px}
+.sh h1{font-size:20px;font-weight:700}
+.sh p{font-size:13px;color:var(--t2);margin-top:2px}
+.card{background:var(--card);border:.5px solid var(--br);border-radius:12px;padding:16px;margin-bottom:12px}
+.card h3{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.mc{background:var(--card);border:.5px solid var(--br);border-radius:12px;padding:14px}
+.ml{font-size:11px;color:var(--t2);margin-bottom:6px}
+.mv{font-size:26px;font-weight:700;line-height:1}
+.ms{font-size:11px;color:var(--t3);margin-top:3px}
+.ctr{display:flex;align-items:center;gap:8px;margin-top:4px}
+.cb{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--br2);background:none;color:var(--t2);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.cv{font-size:28px;font-weight:700;color:var(--g);min-width:36px;text-align:center}
+.pw{margin-top:10px}
+.pl{display:flex;justify-content:space-between;font-size:12px;color:var(--t2);margin-bottom:5px}
+.pb{height:7px;background:var(--bg2);border-radius:4px;overflow:hidden}
+.pf{height:100%;background:var(--g);border-radius:4px;transition:width .3s}
+.ir{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--br);gap:8px}
+.ir:last-child{border-bottom:none}
+.il{font-size:13px;color:var(--t2)}
+.iv{font-size:13px;font-weight:600;color:var(--t);text-align:right}
+.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+.bg{background:var(--gl);color:var(--gd)}
+.ba{background:var(--al);color:var(--am)}
+.bb{background:var(--bll);color:var(--bl)}
+.bp{background:var(--pul);color:var(--pu)}
+.br_{background:var(--rl);color:var(--rd)}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:.5px solid var(--br)}
+.ci:last-child{border-bottom:none}
+.cb2{width:24px;height:24px;border:2px solid var(--br2);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.cb2.ck{background:var(--g);border-color:var(--g);color:#fff}
+.ct{font-size:14px;color:var(--t);line-height:1.4;flex:1}
+.ct.ck{text-decoration:line-through;color:var(--t3)}
+.wt{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
+.wtb{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1.5px solid var(--br2);background:none;color:var(--t2);cursor:pointer;white-space:nowrap}
+.wtb.on{background:var(--g);border-color:var(--g);color:#fff}
+.li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid var(--br)}
+.li:last-child{border-bottom:none}
+.av{width:36px;height:36px;border-radius:50%;background:var(--gl);color:var(--g);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.ln{font-size:13px;font-weight:600;color:var(--t)}
+.li2{font-size:11px;color:var(--t2)}
+.add-btn{display:flex;align-items:center;gap:6px;color:var(--g);background:none;border:1.5px solid var(--g);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;width:100%;justify-content:center;margin-top:10px}
+.note{width:100%;min-height:80px;border:1px solid var(--br2);border-radius:8px;background:var(--bg2);color:var(--t);font-size:13px;font-family:inherit;padding:10px;resize:none;line-height:1.6}
+.note:focus{outline:none;border-color:var(--g)}
+.btn{border:none;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px}
+.btn-g{background:var(--g);color:#fff}
+.btn-g:active{background:var(--gd)}
+.mbg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s}
+.mbg.on{opacity:1;pointer-events:all}
+.modal{background:var(--card);border-radius:20px 20px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom));width:100%;transform:translateY(100%);transition:transform .25s}
+.mbg.on .modal{transform:translateY(0)}
+.modal h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.mf{margin-bottom:12px}
+.mfl{font-size:12px;color:var(--t2);margin-bottom:4px}
+.mi{width:100%;padding:10px 12px;border:1px solid var(--br2);border-radius:8px;background:var(--bg2);color:var(--t);font-size:14px;font-family:inherit}
+.mi:focus{outline:none;border-color:var(--g)}
+.mr{display:flex;gap:8px}
+.mr .mf{flex:1}
+.mrow{display:flex;gap:8px;margin-top:4px}
+.btn-out{background:none;border:1.5px solid var(--br2);color:var(--t2);margin-top:0}
+.toast{position:fixed;bottom:calc(62px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(16px);background:#111;color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:20px;opacity:0;transition:all .25s;z-index:999;white-space:nowrap;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.empty{text-align:center;padding:28px 0;color:var(--t3);font-size:13px}
+.empty .ti{font-size:36px;display:block;margin-bottom:8px}
+/* VÍDEOS */
+.vcard{background:var(--card);border:.5px solid var(--br);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.vcard-header{padding:14px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+.vcard-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.vcard-info{flex:1;min-width:0}
+.vcard-title{font-size:14px;font-weight:700;color:var(--t);line-height:1.3}
+.vcard-cat{font-size:11px;color:var(--t3);margin-top:3px}
+.vcard-check{width:28px;height:28px;border-radius:50%;border:2px solid var(--br2);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .15s;margin-top:2px}
+.vcard-check.ck{background:var(--g);border-color:var(--g);color:#fff}
+.vcard-body{display:none;border-top:.5px solid var(--br)}
+.vcard-body.open{display:block}
+.vb-sec{padding:14px 16px;border-bottom:.5px solid var(--br)}
+.vb-sec:last-child{border-bottom:none}
+.vb-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.vb-txt{font-size:13px;color:var(--t2);line-height:1.7}
+.vb-txt strong{color:var(--t);font-weight:600}
+.topics{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.topic{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px}
+.roteiro{background:var(--bg2);border-radius:8px;padding:12px;font-size:13px;color:var(--t);line-height:1.8;white-space:pre-wrap;font-family:inherit}
+.prod-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:.5px solid var(--br);font-size:13px}
+.prod-item:last-child{border-bottom:none}
+.pc{width:22px;height:22px;border:2px solid var(--br2);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.pc.ck{background:var(--g);border-color:var(--g);color:#fff}
+.pt{color:var(--t);flex:1}
+.pt.ck{text-decoration:line-through;color:var(--t3)}
+.prog-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.ps-item{background:var(--card);border:.5px solid var(--br);border-radius:12px;padding:12px;text-align:center}
+.ps-num{font-size:24px;font-weight:700}
+.ps-lbl{font-size:11px;color:var(--t2);margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="mbg" id="modal">
+  <div class="modal">
+    <h3>Adicionar lead</h3>
+    <div class="mf"><div class="mfl">Nome</div><input class="mi" id="l-name" placeholder="Nome do lead"></div>
+    <div class="mr">
+      <div class="mf"><div class="mfl">Cidade</div><input class="mi" id="l-city" placeholder="Orlando..."></div>
+      <div class="mf"><div class="mfl">Inglês</div>
+        <select class="mi" id="l-lvl"><option>Básico</option><option>Intermediário</option><option>Me viro</option></select>
+      </div>
+    </div>
+    <div class="mf"><div class="mfl">Objetivo</div><input class="mi" id="l-goal" placeholder="Emprego melhor..."></div>
+    <div class="mf"><div class="mfl">Status</div>
+      <select class="mi" id="l-status">
+        <option value="lead">Lead recebido</option>
+        <option value="agendado">Aula agendada</option>
+        <option value="fechado">Fechado ✓</option>
+        <option value="perdido">Não fechou</option>
+      </select>
+    </div>
+    <div class="mrow">
+      <button class="btn btn-out" style="flex:1" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-g" style="flex:1;margin-top:0" onclick="saveLead()"><i class="ti ti-check"></i> Salvar</button>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="t-icon"><i class="ti ti-language"></i></div>
+  <div><div class="t-title">Gislene English</div><div class="t-sub">Painel de gestão</div></div>
+  <div class="sync" id="sync"></div>
+</header>
+
+<main class="main">
+
+  <!-- DASHBOARD -->
+  <div class="sec on" id="sec-dash">
+    <div class="sh"><h1>Dashboard</h1><p id="week-lbl">...</p></div>
+    <div class="mg">
+      <div class="mc"><div class="ml">Leads recebidos</div>
+        <div class="ctr"><button class="cb" onclick="chg('leads',-1)">−</button><div class="cv" id="m-leads">0</div><button class="cb" onclick="chg('leads',1)">+</button></div>
+        <div class="ms">esta semana</div>
+      </div>
+      <div class="mc"><div class="ml">Fechamentos</div>
+        <div class="ctr"><button class="cb" onclick="chg('fechamentos',-1)">−</button><div class="cv" id="m-fech" style="color:var(--am)">0</div><button class="cb" onclick="chg('fechamentos',1)">+</button></div>
+        <div class="ms">esta semana</div>
+      </div>
+      <div class="mc"><div class="ml">Aulas agendadas</div>
+        <div class="ctr"><button class="cb" onclick="chg('agendadas',-1)">−</button><div class="cv" id="m-ag" style="color:var(--bl)">0</div><button class="cb" onclick="chg('agendadas',1)">+</button></div>
+        <div class="ms">pendentes</div>
+      </div>
+      <div class="mc"><div class="ml">Conversão</div>
+        <div class="mv" id="m-conv" style="color:var(--g);margin-top:8px">0%</div>
+        <div class="ms">leads → alunos</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Conteúdos publicados</h3>
+      <div class="ctr" style="justify-content:center;gap:16px">
+        <button class="cb" style="width:36px;height:36px;font-size:22px" onclick="chg('conteudos',-1)">−</button>
+        <div style="text-align:center"><div class="cv" id="m-cont" style="font-size:36px">0</div><div style="font-size:12px;color:var(--t2)">de 15 planejados</div></div>
+        <button class="cb" style="width:36px;height:36px;font-size:22px" onclick="chg('conteudos',1)">+</button>
+      </div>
+      <div class="pw"><div class="pl"><span>Progresso</span><span id="p-cont-lbl">0/15</span></div><div class="pb"><div class="pf" id="p-cont" style="width:0%"></div></div></div>
+    </div>
+    <div class="card">
+      <h3>Checklist — progresso</h3>
+      <div class="pw"><div class="pl"><span>Semana 1</span><span id="ps1">0%</span></div><div class="pb"><div class="pf" id="pf1" style="width:0%"></div></div></div>
+      <div class="pw"><div class="pl"><span>Semana 2</span><span id="ps2">0%</span></div><div class="pb"><div class="pf" id="pf2" style="width:0%"></div></div></div>
+      <div class="pw"><div class="pl"><span>Semana 3</span><span id="ps3">0%</span></div><div class="pb"><div class="pf" id="pf3" style="width:0%"></div></div></div>
+      <div class="pw"><div class="pl"><span>Semana 4</span><span id="ps4">0%</span></div><div class="pb"><div class="pf" id="pf4" style="width:0%"></div></div></div>
+    </div>
+    <div class="card">
+      <h3>Vídeos gravados</h3>
+      <div class="pw"><div class="pl"><span>Progresso de produção</span><span id="ps-vid">0/8</span></div><div class="pb"><div class="pf" id="pf-vid" style="width:0%;background:var(--pu)"></div></div></div>
+    </div>
+    <div class="card">
+      <h3>Anotações rápidas</h3>
+      <textarea class="note" id="nota" placeholder="O que aconteceu essa semana?"></textarea>
+      <button class="btn btn-g" onclick="saveNota()"><i class="ti ti-device-floppy"></i> Salvar</button>
+    </div>
+  </div>
+
+  <!-- LEADS -->
+  <div class="sec" id="sec-leads">
+    <div class="sh"><h1>Leads</h1><p>Acompanhamento de cada contato</p></div>
+    <div class="mg" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <div class="mc" style="padding:12px"><div class="ml">Total</div><div class="mv" style="color:var(--g)" id="lt">0</div></div>
+      <div class="mc" style="padding:12px"><div class="ml">Fechados</div><div class="mv" style="color:var(--am)" id="lf">0</div></div>
+      <div class="mc" style="padding:12px"><div class="ml">Conversão</div><div class="mv" style="color:var(--bl)" id="lc">0%</div></div>
+    </div>
+    <div class="card">
+      <h3>Lista de leads</h3>
+      <div id="lead-list"><div class="empty"><i class="ti ti-users"></i>Nenhum lead ainda.</div></div>
+      <button class="add-btn" onclick="openModal()"><i class="ti ti-plus"></i> Adicionar lead</button>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="sec" id="sec-check">
+    <div class="sh"><h1>Checklist</h1><p>4 semanas de execução</p></div>
+    <div class="wt">
+      <button class="wtb on" onclick="showWeek(1,this)">Semana 1</button>
+      <button class="wtb" onclick="showWeek(2,this)">Semana 2</button>
+      <button class="wtb" onclick="showWeek(3,this)">Semana 3</button>
+      <button class="wtb" onclick="showWeek(4,this)">Semana 4</button>
+    </div>
+    <div id="check-panel"></div>
+  </div>
+
+  <!-- VÍDEOS -->
+  <div class="sec" id="sec-videos">
+    <div class="sh"><h1>Vídeos</h1><p>Estratégia, roteiro e produção</p></div>
+    <div class="prog-summary">
+      <div class="ps-item"><div class="ps-num" id="v-done" style="color:var(--g)">0</div><div class="ps-lbl">Gravados</div></div>
+      <div class="ps-item"><div class="ps-num">8</div><div class="ps-lbl">Total</div></div>
+      <div class="ps-item"><div class="ps-num" id="v-pct" style="color:var(--am)">0%</div><div class="ps-lbl">Concluído</div></div>
+    </div>
+    <div class="card">
+      <h3>Por categoria</h3>
+      <div class="pw"><div class="pl"><span>📌 Fixados</span><span id="p-fix">0/3</span></div><div class="pb"><div class="pf" id="pf-fix" style="width:0%;background:var(--bl)"></div></div></div>
+      <div class="pw"><div class="pl"><span>🎓 Autoridade</span><span id="p-aut">0/3</span></div><div class="pb"><div class="pf" id="pf-aut" style="width:0%"></div></div></div>
+      <div class="pw"><div class="pl"><span>💬 Objeção & Desejo</span><span id="p-obj">0/2</span></div><div class="pb"><div class="pf" id="pf-obj" style="width:0%;background:var(--am)"></div></div></div>
+    </div>
+    <div id="video-list"></div>
+  </div>
+
+  <!-- ESTRATÉGIA -->
+  <div class="sec" id="sec-estrategia">
+    <div class="sh"><h1>Estratégia</h1><p>A lógica por trás dos vídeos</p></div>
+    <div class="card">
+      <h3>Lógica dos 3 fixados</h3>
+      <div style="font-size:13px;color:var(--t2);line-height:1.7">Os 3 vídeos fixados são a <strong style="color:var(--t)">vitrine do perfil</strong>. São os primeiros que qualquer visitante vê. A ordem importa:</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+        <div style="background:var(--bll);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--bl);font-weight:600">1. Quem é → Conexão imediata</div>
+        <div style="background:var(--al);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--am);font-weight:600">2. Dor → Identificação</div>
+        <div style="background:var(--gl);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--gd);font-weight:600">3. CTA → Conversão</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Os dois públicos</h3>
+      <div style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:10px"><strong style="color:var(--t)">Público 1 — Adultos brasileiros</strong><br>Querem emprego melhor, promoção, independência. Dor: travar no inglês do dia a dia. Solução: curso ESL personalizado.</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.7"><strong style="color:var(--t)">Público 2 — Pais brasileiros</strong><br>Querem que o filho se saia bem na escola americana. Dor: criança com dificuldade em Reading, Math ou Writing. Solução: tutoria escolar 1st–6th grade.</div>
+    </div>
+    <div class="card">
+      <h3>Funil de conteúdo</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--bll);border-radius:8px;padding:12px"><div style="font-size:12px;font-weight:700;color:var(--bl);margin-bottom:4px">TOPO — Alcance</div><div style="font-size:13px;color:var(--t2)">Vídeos de autoridade e objeção chegam em pessoas que ainda não conhecem a Gislene.</div></div>
+        <div style="background:var(--al);border-radius:8px;padding:12px"><div style="font-size:12px;font-weight:700;color:var(--am);margin-bottom:4px">MEIO — Consideração</div><div style="font-size:13px;color:var(--t2)">Visitam o perfil, assistem os fixados, entendem o método e quem é a Teacher Gi.</div></div>
+        <div style="background:var(--gl);border-radius:8px;padding:12px"><div style="font-size:12px;font-weight:700;color:var(--gd);margin-bottom:4px">FUNDO — Conversão</div><div style="font-size:13px;color:var(--t2)">Clicam no link do perfil, mandam mensagem e agendam a conversa inicial.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Diferenciais que devem aparecer</h3>
+      <div style="font-size:13px;color:var(--t2);line-height:2">
+        ✦ <strong style="color:var(--t)">Cambridge CELTA</strong> — credencial internacional<br>
+        ✦ <strong style="color:var(--t)">10 anos em Orlando</strong> — entende a vida real nos EUA<br>
+        ✦ <strong style="color:var(--t)">Mãe do Thomas</strong> — humaniza, conecta com pais<br>
+        ✦ <strong style="color:var(--t)">Personalização real</strong> — não é curso genérico<br>
+        ✦ <strong style="color:var(--t)">Portal do aluno</strong> — estrutura profissional<br>
+        ✦ <strong style="color:var(--t)">Experiência com ELL/bilingual</strong> — especialista no brasileiro
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="bnav">
+  <button class="nb on" onclick="showSec('dash',this)"><i class="ti ti-layout-dashboard"></i><span>Início</span></button>
+  <button class="nb" onclick="showSec('leads',this)"><i class="ti ti-users"></i><span>Leads</span></button>
+  <button class="nb" onclick="showSec('check',this)"><i class="ti ti-checkbox"></i><span>Checklist</span></button>
+  <button class="nb" onclick="showSec('videos',this)"><i class="ti ti-video"></i><span>Vídeos</span></button>
+  <button class="nb" onclick="showSec('estrategia',this)"><i class="ti ti-bulb"></i><span>Estratégia</span></button>
+</nav>
+
+<script>
+var metrics={leads:0,fechamentos:0,agendadas:0,conteudos:0};
+var checkState={1:[],2:[],3:[],4:[]};
+var currentWeek=1;
+var weekData={
+  1:['Definir posicionamento final','Ajustar bio do Instagram','Organizar identidade visual','Produzir vídeo fixado 1 — Quem é a Gislene','Produzir vídeo fixado 2 — Por que você trava','Produzir vídeo fixado 3 — Aula experimental'],
+  2:['Produzir 3 reels de autoridade','Criar destaques do Instagram','Configurar WhatsApp Business','Montar funil de qualificação','Produzir 2 conteúdos de conexão'],
+  3:['Publicar todos os conteúdos','Iniciar tráfego pago — Meta Ads','Testar 2 criativos diferentes','Monitorar primeiros leads','Responder todos os leads em até 5 minutos'],
+  4:['Avaliar métricas de alcance','Ajustar segmentação das campanhas','Coletar primeiros feedbacks','Criar novos criativos com base nos dados','Documentar primeiro caso de sucesso']
+};
+var statusLabel={lead:'Lead recebido',agendado:'Aula agendada',fechado:'Fechado ✓',perdido:'Não fechou'};
+var statusClass={lead:'bb',agendado:'ba',fechado:'bg',perdido:'br_'};
+[1,2,3,4].forEach(function(w){checkState[w]=new Array(weekData[w].length).fill(false);});
+
+var videos=[
+  {id:'v1',num:'F1',titulo:'Quem é a Teacher Gi',categoria:'Fixado',cor:'#185FA5',badge:'bb',
+   objetivo:'Apresentação e conexão imediata',
+   porque:'É o primeiro vídeo que qualquer visitante vê. Cria conexão e responde: "Quem é essa pessoa e por que confiar nela?" Sem esse vídeo o perfil é frio e genérico.',
+   topicos:['Quem é Gislene','10 anos em Orlando','Cambridge CELTA','O que move a Teacher Gi'],
+   diferencial:'Brasileira + mora em Orlando há 10 anos + Cambridge CELTA + mãe cria identificação imediata.',
+   roteiro:`[Olhando pra câmera, tom de conversa]
+
+"Oi, eu sou a Gislene Rhodes — ou Teacher Gi, como meus alunos me chamam.
+
+Tenho 36 anos, moro em Orlando há 10 anos, sou mãe do Thomas e esposa do Griffin.
+
+Sou professora de inglês especializada em ensinar brasileiros nos Estados Unidos.
+
+Mais de 15 anos de experiência, especialização pela Cambridge no Canadá, e já lecionei em São Paulo, Vancouver e na Flórida.
+
+Mas sabe o que me move de verdade?
+
+Ver um brasileiro que travava no inglês começar a falar com confiança. Conseguir uma promoção. Se virar sozinho no dia a dia.
+
+Se você mora nos EUA e sente que o inglês ainda te limita — você está no lugar certo.
+
+Me segue aqui. Vem comigo."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram','Fixado no perfil']},
+
+  {id:'v2',num:'F2',titulo:'Por que você ainda trava no inglês',categoria:'Fixado',cor:'#BA7517',badge:'ba',
+   objetivo:'Identificação e quebra de objeção',
+   porque:'O vídeo mais importante do perfil. Faz o visitante pensar "ela tá falando de mim". A identificação é o gatilho mais poderoso antes de uma compra.',
+   topicos:['A dor de entender mas não falar','Por que métodos tradicionais falham','A realidade do brasileiro nos EUA','A solução personalizada'],
+   diferencial:'A Teacher Gi é brasileira e viveu essa realidade. Fala com autoridade e empatia ao mesmo tempo.',
+   roteiro:`[Tom empático, como quem entende a dor]
+
+"Você mora nos EUA, ouve inglês todo dia, talvez até entenda bastante...
+
+Mas na hora de falar — trava.
+
+Vergonha de errar. Medo de não ser entendido. Dependência do Google Translate pra tudo.
+
+Sabe por quê isso acontece?
+
+Porque a maioria dos métodos não foram feitos pra você. Foram feitos pra quem aprende em sala de aula, com tempo e sem pressão.
+
+Você não tem isso. Você tem uma rotina cheia, uma vida real nos EUA — e precisa de inglês que funcione agora.
+
+É exatamente isso que eu ensino.
+
+Inglês prático. Personalizado. Do jeito que cabe na sua vida.
+
+O link tá no perfil. Agenda uma conversa comigo."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram','Fixado no perfil']},
+
+  {id:'v3',num:'F3',titulo:'Como funciona a aula com a Teacher Gi',categoria:'Fixado',cor:'#1D9E75',badge:'bg',
+   objetivo:'Conversão — CTA direto para a conversa inicial',
+   porque:'Depois de conexão (V1) e identificação (V2), o visitante precisa de razão clara pra agir. Remove a objeção "mas como funciona?" e entrega um CTA direto.',
+   topicos:['Aulas 100% online via Zoom','Plano de estudo personalizado','Portal do aluno','Como agendar'],
+   diferencial:'Mostrar o processo completo reduz o medo do desconhecido e aumenta conversão.',
+   roteiro:`[Direta, confiante]
+
+"Se você chegou até aqui, você já sabe que precisa melhorar o inglês.
+
+As aulas são 100% online, individuais, via Zoom — com plano de estudo personalizado pro seu nível, objetivo e rotina.
+
+A gente começa com uma conversa inicial. Eu entendo onde você está e a gente monta um plano juntos.
+
+Você tem acesso ao Portal do Aluno com todo o material organizado, acompanhamento contínuo e suporte pra dúvidas.
+
+Sem método genérico. Só você e eu, avançando no que você realmente precisa.
+
+Clica no link aqui no perfil e agenda a nossa conversa."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram','Fixado no perfil']},
+
+  {id:'v4',num:'A1',titulo:'3 frases em inglês pra usar na entrevista',categoria:'Autoridade',cor:'#534AB7',badge:'bp',
+   objetivo:'Autoridade + alcance orgânico',
+   porque:'Conteúdo prático gera salvamentos e compartilhamentos — métricas que mais impulsionam o alcance. Quem salva é exatamente o público-alvo.',
+   topicos:['Tell me about yourself','What are your strengths','Why do you want this job'],
+   diferencial:'A Teacher Gi ensina inglês do mundo real — não de livro. Provar isso na prática.',
+   roteiro:`[Tom de aula rápida, didático]
+
+"Se você tem uma entrevista chegando, salva esse vídeo.
+
+Frase 1 — pra começar o 'Tell me about yourself':
+'I have X years of experience in... and I'm really passionate about...'
+
+Frase 2 — pra falar seus pontos fortes:
+'One of my biggest strengths is... and I've been able to use that by...'
+
+Frase 3 — pra fechar com confiança:
+'I'm very excited about this opportunity because...'
+
+Pratica em voz alta — é isso que faz a diferença.
+
+Se quiser treinar essas frases numa aula, o link tá no perfil."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram']},
+
+  {id:'v5',num:'A2',titulo:'5 erros que todo brasileiro comete ao falar inglês',categoria:'Autoridade',cor:'#534AB7',badge:'bp',
+   objetivo:'Autoridade + identificação + viralização',
+   porque:'Vídeos de "erros comuns" geram altíssimo engajamento porque todo mundo se identifica e quer compartilhar. Chega em quem ainda não segue.',
+   topicos:['Tradução literal','Pronúncia do H','Actually vs Atualmente','Velocidade vs Clareza','Esperar estar pronto'],
+   diferencial:'Professora brasileira nomeia esses erros com precisão porque ela mesma já passou por eles.',
+   roteiro:`[Tom leve, com humor e empatia]
+
+"Se você é brasileiro nos EUA, provavelmente comete pelo menos um desses erros. E tudo bem — eu também já cometi.
+
+Erro 1: 'I am with hunger' em vez de 'I am hungry'. Em inglês não funciona tradução literal.
+
+Erro 2: Pronunciar o H forte no começo das palavras. 'Happy' não tem som de H como em português.
+
+Erro 3: Usar 'actually' achando que significa 'atualmente'. Significa 'na verdade'.
+
+Erro 4: Falar rápido demais pra parecer fluente. Clareza vale mais que velocidade.
+
+Erro 5: Esperar ficar pronto pra falar. Você aprende falando — não antes de falar.
+
+Qual desses você já cometeu? Comenta aqui."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram']},
+
+  {id:'v6',num:'A3',titulo:'Como ajudar seu filho nas tarefas em inglês',categoria:'Autoridade',cor:'#534AB7',badge:'bp',
+   objetivo:'Autoridade + segundo público (pais)',
+   porque:'Ativa o segundo público da Gislene: pais brasileiros com filhos em escola americana. Essa dor é enorme e pouco explorada. Pode abrir um público completamente novo.',
+   topicos:['A dificuldade com homework em inglês','Como apoiar sem saber o conteúdo','Quando buscar suporte especializado','Tutoria escolar como solução'],
+   diferencial:'Gislene é mãe do Thomas, mora em Orlando há 10 anos e tem formação em Elementary Education pela UNF.',
+   roteiro:`[Tom de mãe e professora — caloroso e especialista]
+
+"Você é brasileiro nos EUA e seu filho chega da escola com homework em inglês...
+
+E você trava tanto quanto ele.
+
+Isso acontece com muita família brasileira aqui. E não é falta de esforço — é falta de ferramenta.
+
+Primeira coisa: não traduz. Ajuda ele a entender o contexto em inglês mesmo, mesmo que devagar.
+
+Segunda: lê junto com ele. A presença e o interesse fazem diferença enorme na confiança da criança.
+
+Terceira: reconhece quando ele precisa de suporte especializado. Isso não é fracasso — é cuidado.
+
+Eu trabalho com tutoria escolar para crianças do 1st ao 6th grade. Se seu filho tá com dificuldade em Reading, Writing ou Math — me chama."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram']},
+
+  {id:'v7',num:'O1',titulo:'É possível aprender inglês depois dos 30?',categoria:'Objeção',cor:'#BA7517',badge:'ba',
+   objetivo:'Quebrar a maior objeção do público adulto',
+   porque:'A crença de que depois de certa idade não aprende mais é a objeção nº1 do público 30-55 anos. Esse vídeo destrói esse bloqueio. Quem supera essa objeção está pronto pra comprar.',
+   topicos:['O mito da idade','Adultos aprendem diferente, não pior','Exemplos reais de alunas','O papel da motivação real'],
+   diferencial:'A Teacher Gi tem depoimentos reais de alunas adultas que travavam e destraváram.',
+   roteiro:`[Tom encorajador, baseado em fato]
+
+"A resposta é sim. E vou te contar por quê com base em evidência.
+
+Adultos aprendem inglês de forma diferente de crianças — mas não pior.
+
+Criança aprende por imersão natural. Adulto aprende com intenção, estratégia e contexto real.
+
+Isso significa que você aprende mais rápido quando o método é certo.
+
+Eu tenho alunas de 35, 45, 55 anos que chegaram me dizendo que já tinham desistido. Hoje conversam em inglês no trabalho, na escola do filho, no médico.
+
+O problema nunca foi a sua idade. Foi o método errado.
+
+Se você quer aprender do jeito certo, pro seu objetivo, no seu ritmo — o link tá no perfil."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram']},
+
+  {id:'v8',num:'D1',titulo:'Quanto inglês você precisa pra ganhar mais?',categoria:'Desejo',cor:'#0F6E56',badge:'bg',
+   objetivo:'Ativar o desejo de melhoria financeira',
+   porque:'Fala diretamente com a motivação mais concreta do público: dinheiro e oportunidade. Ativa o desejo e conecta com a solução da Gislene.',
+   topicos:['Inglês e salário nos EUA','Quanto você precisa pra mudar de nível','Inglês do trabalho vs da escola','Como começar agora'],
+   diferencial:'A mensagem de que não precisa ser fluente pra dar o próximo passo é libertadora e reduz a barreira de entrada.',
+   roteiro:`[Tom direto, com dados de realidade]
+
+"Você não precisa de inglês perfeito pra ganhar mais. Precisa do inglês certo.
+
+A maioria dos brasileiros nos EUA está presa num trabalho abaixo do potencial porque evita situações em inglês: reunião, conversa com o chefe, entrevista de promoção.
+
+Você não precisa falar como americano nativo pra mudar isso.
+
+Você precisa se comunicar com clareza nas situações que importam pro seu trabalho.
+
+Trabalhadores com comunicação intermediária em inglês ganham em média 20% a mais do que quem evita o idioma.
+
+Vinte por cento.
+
+Isso não é fluência. É comunicação funcional — e é exatamente o que eu ensino.
+
+Quer saber por onde começar? O link tá no perfil."`,
+   producao:['Gravação feita','Edição concluída','Legenda adicionada','Publicado no Instagram']}
+];
+
+var videoState={};
+var prodState={};
+videos.forEach(function(v){videoState[v.id]=false;prodState[v.id]=new Array(v.producao.length).fill(false);});
+
+function showSec(id,btn){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});
+  document.getElementById('sec-'+id).classList.add('on');
+  if(btn) btn.classList.add('on');
+  window.scrollTo(0,0);
+}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},2200);}
+function openModal(){document.getElementById('modal').classList.add('on');}
+function closeModal(){document.getElementById('modal').classList.remove('on');}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function setSyncing(){document.getElementById('sync').classList.add('spin');}
+function setSynced(){document.getElementById('sync').classList.remove('spin');}
+
+function chg(k,d){metrics[k]=Math.max(0,(metrics[k]||0)+d);renderMetrics();dbSetMetrics();}
+
+function renderMetrics(){
+  document.getElementById('m-leads').textContent=metrics.leads||0;
+  document.getElementById('m-fech').textContent=metrics.fechamentos||0;
+  document.getElementById('m-ag').textContent=metrics.agendadas||0;
+  document.getElementById('m-cont').textContent=metrics.conteudos||0;
+  var taxa=metrics.leads>0?Math.round((metrics.fechamentos||0)/metrics.leads*100):0;
+  document.getElementById('m-conv').textContent=taxa+'%';
+  var cp=Math.min(100,Math.round((metrics.conteudos||0)/15*100));
+  document.getElementById('p-cont').style.width=cp+'%';
+  document.getElementById('p-cont-lbl').textContent=(metrics.conteudos||0)+'/15';
+  [1,2,3,4].forEach(function(w){
+    var total=weekData[w].length;
+    var done=(checkState[w]||[]).filter(Boolean).length;
+    var pct=Math.round(done/total*100);
+    document.getElementById('pf'+w).style.width=pct+'%';
+    document.getElementById('ps'+w).textContent=pct+'%';
+  });
+  var vd=videos.filter(function(v){return videoState[v.id];}).length;
+  document.getElementById('pf-vid').style.width=Math.round(vd/8*100)+'%';
+  document.getElementById('ps-vid').textContent=vd+'/8';
+}
+
+function showWeek(w,btn){
+  currentWeek=w;
+  document.querySelectorAll('.wtb').forEach(function(b){b.classList.remove('on');});
+  if(btn) btn.classList.add('on');
+  buildChecklist();
+}
+function buildChecklist(){
+  var w=currentWeek,state=checkState[w]||[],items=weekData[w];
+  var done=state.filter(Boolean).length,pct=Math.round(done/items.length*100);
+  var html='<div class="card"><h3>Semana '+w+' — '+done+'/'+items.length+' concluídos</h3><div class="pw" style="margin-bottom:12px"><div class="pb"><div class="pf" style="width:'+pct+'%"></div></div></div>';
+  items.forEach(function(item,i){
+    var ck=!!state[i];
+    html+='<div class="ci"><div class="cb2'+(ck?' ck':'')+'" data-w="'+w+'" data-i="'+i+'">'+(ck?'<i class="ti ti-check" style="font-size:13px"></i>':'')+'</div><div class="ct'+(ck?' ck':'')+'">'+item+'</div></div>';
+  });
+  html+='</div>';
+  document.getElementById('check-panel').innerHTML=html;
+  document.querySelectorAll('.cb2').forEach(function(el){
+    el.addEventListener('click',function(){
+      var w2=parseInt(this.dataset.w),i2=parseInt(this.dataset.i);
+      checkState[w2][i2]=!checkState[w2][i2];
+      buildChecklist();renderMetrics();dbSetChecklist();
+    });
+  });
+}
+
+function saveNota(){
+  var text=document.getElementById('nota').value;
+  setSyncing();
+  dbSetNote(text).then(function(){setSynced();toast('Anotação salva!');}).catch(function(){setSynced();});
+}
+
+function renderLeads(leads){
+  var list=document.getElementById('lead-list');
+  if(!leads||!leads.length){list.innerHTML='<div class="empty"><i class="ti ti-users"></i>Nenhum lead ainda.</div>';return;}
+  var html='';
+  leads.forEach(function(l){
+    html+='<div class="li"><div class="av">'+(l.name||'?').charAt(0).toUpperCase()+'</div>';
+    html+='<div style="flex:1;min-width:0"><div class="ln">'+l.name+'</div><div class="li2">'+(l.city||'—')+' · '+(l.level||'—')+'</div></div>';
+    html+='<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0">';
+    html+='<span class="badge '+(statusClass[l.status]||'bb')+'">'+(statusLabel[l.status]||'Lead')+'</span>';
+    html+='<select style="font-size:11px;border:none;background:none;color:var(--t3);cursor:pointer;font-family:inherit" onchange="updateStatus(\''+l.id+'\',this.value)">';
+    ['lead','agendado','fechado','perdido'].forEach(function(s){html+='<option value="'+s+'"'+(l.status===s?' selected':'')+'>'+statusLabel[s]+'</option>';});
+    html+='</select></div></div>';
+  });
+  list.innerHTML=html;
+  var total=leads.length,fech=leads.filter(function(l){return l.status==='fechado';}).length;
+  document.getElementById('lt').textContent=total;
+  document.getElementById('lf').textContent=fech;
+  document.getElementById('lc').textContent=total>0?Math.round(fech/total*100)+'%':'0%';
+}
+
+function saveLead(){
+  var name=document.getElementById('l-name').value.trim();
+  if(!name){toast('Informe o nome do lead');return;}
+  var lead={name:name,city:document.getElementById('l-city').value||'—',level:document.getElementById('l-lvl').value,goal:document.getElementById('l-goal').value,status:document.getElementById('l-status').value,createdAt:new Date().toISOString()};
+  setSyncing();
+  dbAddLead(lead).then(function(){setSynced();closeModal();toast('Lead adicionado!');['l-name','l-city','l-goal'].forEach(function(id){document.getElementById(id).value='';});}).catch(function(){setSynced();toast('Erro ao salvar');});
+}
+function updateStatus(id,status){setSyncing();dbUpdateLead(id,status).then(function(){setSynced();toast('Status atualizado');}).catch(function(){setSynced();});}
+
+// VÍDEOS
+function toggleVideo(id){
+  videoState[id]=!videoState[id];
+  renderVideoList();renderMetrics();dbSaveVideos();
+  toast(videoState[id]?'✓ Marcado como gravado!':'Desmarcado');
+}
+function toggleProd(vid,idx){
+  prodState[vid][idx]=!prodState[vid][idx];
+  renderVideoList();dbSaveVideos();
+}
+function toggleBody(id){
+  var b=document.getElementById('vb-'+id);
+  b.classList.toggle('open');
+}
+
+function renderVideoList(){
+  var cats={Fixado:0,Autoridade:0,Objecao:0};
+  var html='';
+  videos.forEach(function(v){
+    var done=videoState[v.id];
+    if(done){
+      if(v.categoria==='Fixado') cats.Fixado++;
+      else if(v.categoria==='Autoridade') cats.Autoridade++;
+      else cats.Objecao++;
+    }
+    var pd=prodState[v.id].filter(Boolean).length,pt=v.producao.length;
+    html+='<div class="vcard">';
+    html+='<div class="vcard-header" onclick="toggleBody(\''+v.id+'\')"><div class="vcard-num" style="background:'+v.cor+'">'+v.num+'</div>';
+    html+='<div class="vcard-info"><div class="vcard-title">'+v.titulo+'</div>';
+    html+='<div class="vcard-cat"><span class="badge '+v.badge+'">'+v.categoria+'</span> <span style="font-size:11px;color:var(--t3)">'+pd+'/'+pt+' etapas</span></div></div>';
+    html+='<div class="vcard-check'+(done?' ck':'')+'" onclick="event.stopPropagation();toggleVideo(\''+v.id+'\')">'+(done?'<i class="ti ti-check" style="font-size:13px"></i>':'')+'</div></div>';
+    html+='<div class="vcard-body" id="vb-'+v.id+'">';
+    html+='<div class="vb-sec"><div class="vb-lbl" style="color:'+v.cor+'">🎯 Por que importa</div><div class="vb-txt">'+v.porque+'</div>';
+    html+='<div class="topics">';
+    v.topicos.forEach(function(t){html+='<span class="topic" style="background:'+v.cor+'22;color:'+v.cor+'">'+t+'</span>';});
+    html+='</div><div class="vb-txt" style="margin-top:10px"><strong>Diferencial:</strong> '+v.diferencial+'</div></div>';
+    html+='<div class="vb-sec"><div class="vb-lbl" style="color:'+v.cor+'">📌 Objetivo</div><div class="vb-txt">'+v.objetivo+'</div></div>';
+    html+='<div class="vb-sec"><div class="vb-lbl" style="color:'+v.cor+'">📝 Roteiro</div><div class="roteiro">'+v.roteiro+'</div></div>';
+    html+='<div class="vb-sec"><div class="vb-lbl" style="color:'+v.cor+'">✅ Produção</div>';
+    v.producao.forEach(function(p,i){
+      var ck=prodState[v.id][i];
+      html+='<div class="prod-item"><div class="pc'+(ck?' ck':'')+'" onclick="toggleProd(\''+v.id+'\','+i+')">'+(ck?'<i class="ti ti-check" style="font-size:12px"></i>':'')+'</div><div class="pt'+(ck?' ck':'')+'">'+p+'</div></div>';
+    });
+    html+='</div></div></div>';
+  });
+  document.getElementById('video-list').innerHTML=html;
+  var vd=videos.filter(function(v){return videoState[v.id];}).length;
+  document.getElementById('v-done').textContent=vd;
+  document.getElementById('v-pct').textContent=Math.round(vd/8*100)+'%';
+  document.getElementById('p-fix').textContent=cats.Fixado+'/3';
+  document.getElementById('pf-fix').style.width=Math.round(cats.Fixado/3*100)+'%';
+  document.getElementById('p-aut').textContent=cats.Autoridade+'/3';
+  document.getElementById('pf-aut').style.width=Math.round(cats.Autoridade/3*100)+'%';
+  document.getElementById('p-obj').textContent=cats.Objecao+'/2';
+  document.getElementById('pf-obj').style.width=Math.round(cats.Objecao/2*100)+'%';
+}
+
+function dbSaveVideos(){
+  if(window.dbSetVideos) dbSetVideos({videoState:videoState,prodState:prodState}).catch(console.error);
+}
+
+// INIT
+var now=new Date();
+document.getElementById('week-lbl').textContent='Semana '+Math.ceil(now.getDate()/7)+' de '+now.toLocaleString('pt-BR',{month:'long'})+' · '+now.getFullYear();
+buildChecklist();renderMetrics();renderLeads([]);renderVideoList();
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+var cfg={apiKey:"AIzaSyAjLQDcJFbPcuVXKgxdzT2umo-PKEnKsU0",authDomain:"rise-painel.firebaseapp.com",projectId:"rise-painel",storageBucket:"rise-painel.firebasestorage.app",messagingSenderId:"262140796838",appId:"1:262140796838:web:f38ab03c219d286348f967"};
+var app=initializeApp(cfg);
+var db=getFirestore(app);
+var C="gislene-english";
+
+window.dbSetMetrics=async function(){try{setSyncing();await setDoc(doc(db,C,'metrics'),metrics);setSynced();}catch(e){setSynced();}};
+window.dbSetChecklist=async function(){try{setSyncing();await setDoc(doc(db,C,'checklist'),checkState);setSynced();}catch(e){setSynced();}};
+window.dbSetNote=async function(t){await setDoc(doc(db,C,'note'),{text:t,at:new Date().toISOString()});};
+window.dbAddLead=async function(l){await addDoc(collection(db,C+'/leads/items'),l);};
+window.dbUpdateLead=async function(id,s){await updateDoc(doc(db,C+'/leads/items',id),{status:s});};
+window.dbSetVideos=async function(d){setSyncing();await setDoc(doc(db,C,'videos'),d);setSynced();};
+
+async function load(){
+  try{var s=await getDoc(doc(db,C,'metrics'));if(s.exists()){Object.assign(metrics,s.data());renderMetrics();}}catch(e){}
+  try{var s=await getDoc(doc(db,C,'checklist'));if(s.exists()){var d=s.data();[1,2,3,4].forEach(function(w){if(d[w])checkState[w]=d[w];});buildChecklist();renderMetrics();}}catch(e){}
+  try{var s=await getDoc(doc(db,C,'note'));if(s.exists())document.getElementById('nota').value=s.data().text||'';}catch(e){}
+  try{var s=await getDoc(doc(db,C,'videos'));if(s.exists()){var d=s.data();if(d.videoState)Object.assign(videoState,d.videoState);if(d.prodState)Object.assign(prodState,d.prodState);renderVideoList();renderMetrics();}}catch(e){}
+  try{onSnapshot(collection(db,C+'/leads/items'),function(snap){var leads=[];snap.forEach(function(d){leads.push(Object.assign({id:d.id},d.data()));});leads.sort(function(a,b){return(b.createdAt||'').localeCompare(a.createdAt||'');});renderLeads(leads);});}catch(e){}
+}
+load();
+</script>
+</body>
+</html>
